@@ -184,6 +184,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 				// console.log(d.data.country);
 				tooltip.text(d.data.housing_expenditure);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				// tooltip.style("top",0+"px").style("left",0+"px");
@@ -191,6 +192,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			})
 			.on("mouseout", function(){
 				tooltip.style("visibility", "hidden");
+				// d3.select(avg_housing).movingToFront();
 			});
 
 	var avg_housing = svg_housing.append("circle")
@@ -210,6 +212,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.household_net_financial_wealth);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -234,6 +237,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.quality_of_support_network);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -258,6 +262,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.air_pollution);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -282,6 +287,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.consultation_on_rule_making);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -306,6 +312,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.life_expectancy);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -331,6 +338,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.life_satisfaction);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -355,6 +363,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.assault_rate);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -379,6 +388,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.employees_working_very_long_hours);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -403,6 +413,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.student_skills);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -427,6 +438,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.on('mouseover', function(d) {
 				tooltip.text(d.data.personal_earnings);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -452,6 +464,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 				// console.log(d.data.country);
 				tooltip.text(d.data.country);
 				tooltip.style("visibility", "visible");
+				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -466,3 +479,10 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 function selectCountry() {
 
 }
+
+d3.selection.prototype.moveToFront = function() {
+  // console.log('hi');
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};

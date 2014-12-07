@@ -12,7 +12,7 @@ body {
 	font-size: 11px !important;
 	font-family: 'gotham_light', sans-serif !important;
 	padding: 4%;
-	padding-top: 3%;
+	padding-top: 5%;
 	padding-bottom: 4%;
 }
 
@@ -34,6 +34,9 @@ h4 {
 
 .solidArc:hover {
 	fill: blue;
+	stroke: blue;
+	/*fill: #2d90dc;*/
+	/*stroke: #000;*/
 }
 
 .solidArc {
@@ -76,8 +79,9 @@ h4 {
 }
 
 .avg {
-	stroke: rgba(0,0,255,1);
-	stroke-width: 1.1;
+	stroke: #ee576e;
+	/*stroke: rgba(0,0,255,1);*/
+	stroke-width: 1.3;
 	stroke-dasharray: 1,2;
 	fill: none;
 }

@@ -7,10 +7,9 @@ var pie = d3.layout.pie()
 	.sort(null)
 	.value(function(d) { return Math.PI * 2 / 35; });
 
-var tip = d3.tip()
-	.attr('class', 'd3-tip')
-	.offset([0, 0])
-	.html(function(d) { return d.data.country; });
+var tooltip = d3.select("body")
+	.append("div")
+	.attr("id", "tooltip");
 
 // ARC
 var arc_housing = d3.svg.arc()
@@ -146,18 +145,6 @@ var svg_job = d3.select("#job").append("svg")
 	.append("g")
 	.attr("transform", "translate(" + width/2 +"," + height/2 + ")");
 
-svg_housing.call(tip);
-svg_income.call(tip);
-svg_community.call(tip);
-svg_environment.call(tip);
-svg_civic.call(tip);
-svg_health.call(tip);
-svg_life.call(tip);
-svg_safety.call(tip);
-svg_balance.call(tip);
-svg_education.call(tip);
-svg_job.call(tip);
-
 d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 	var path_housing_expenditure = svg_housing.selectAll(".solidArc")
 			.data(pie(data))
@@ -166,8 +153,17 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_housing)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				// console.log(d.data.country);
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_income = svg_income.selectAll(".solidArc")
 			.data(pie(data))
@@ -176,8 +172,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_income)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_community = svg_community.selectAll(".solidArc")
 			.data(pie(data))
@@ -186,8 +190,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_community)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_environment = svg_environment.selectAll(".solidArc")
 			.data(pie(data))
@@ -196,8 +208,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_environment)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_civic = svg_civic.selectAll(".solidArc")
 			.data(pie(data))
@@ -206,8 +226,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_civic)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_health = svg_health.selectAll(".solidArc")
 			.data(pie(data))
@@ -216,8 +244,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_health)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_life = svg_life.selectAll(".solidArc")
 			.data(pie(data))
@@ -226,8 +262,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_life)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_safety = svg_safety.selectAll(".solidArc")
 			.data(pie(data))
@@ -236,8 +280,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_safety)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_balance = svg_balance.selectAll(".solidArc")
 			.data(pie(data))
@@ -246,8 +298,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_balance)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_education = svg_education.selectAll(".solidArc")
 			.data(pie(data))
@@ -256,8 +316,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_education)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
 
 	var path_job = svg_job.selectAll(".solidArc")
 			.data(pie(data))
@@ -266,29 +334,25 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("class", "solidArc")
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_job)
-			.on('mouseover', tip.show)
-			.on('mouseout', tip.hide);
+			.on('mouseover', function(d) {
+				tooltip.text(d.data.country);
+				tooltip.style("visibility", "visible");
+			})
+			.on("mousemove", function(){
+				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
+			})
+			.on("mouseout", function(){
+				tooltip.style("visibility", "hidden");
+			});
+
+	// console.log( svg_job.selectAll("path") );
 });
 
+function selectCountry() {
 
-// d3.csv('aster_data.csv', function(error, data) {
-// 	data.forEach(function(d) {
-// 		// d.id = d.id;
-// 		// d.order = +d.order;
-// 		// d.color = d.color;
-// 		// d.weight = +d.weight;
-// 		// d.score = +d.score;
-// 		// d.width = +d.weight;
-// 		// d.label = d.label;
-// 	});
 
-// 	var path = svg.selectAll(".solidArc")
-// 			.data(pie(data))
-// 		.enter().append("path")
-// 			.attr("fill", "#56d5fc")
-// 			.attr("class", "solidArc")
-// 			.attr("stroke", "#56d5fc")
-// 			.attr("d", arc)
-// 			.on('mouseover', tip.show)
-// 			.on('mouseout', tip.hide);
-// });
+}
+
+
+
+

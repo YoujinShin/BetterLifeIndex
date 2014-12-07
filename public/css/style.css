@@ -2,18 +2,23 @@
     font-family: gotham_book;
     src: url(gotham-book.ttf);
 }
+
 @font-face {
     font-family: gotham_light;
     src: url(gotham-light.otf);
 }
 
-
 body {
-	/*font-size: 10px;*/
+	font-size: 11px !important;
+	font-family: 'gotham_light', sans-serif !important;
+	padding: 4%;
+	padding-top: 3%;
+	padding-bottom: 4%;
+}
+
+h4 {
+	font-size: 14px !important;
 	font-family: 'gotham_book', sans-serif !important;
-	padding: 5%;
-	padding-top: 5%;
-	padding-bottom: 5%;
 }
 
 .axis path,
@@ -28,7 +33,6 @@ body {
 }
 
 .solidArc:hover {
-	/*fill: orangered;*/
 	fill: blue;
 }
 
@@ -50,29 +54,30 @@ body {
 }
 
 #tooltip {   
-	position: absolute;           
+	position: absolute; 
+	/*position: relative;*/
 	text-align: center;
-	padding: 8px;             
-	font-size: 12px;        
-	border: 1px;      
-	border-radius: 4px;           
-	pointer-events: none;    
-	color: #fff; 
-	background-color: rgba(0,0,0,0.8); 
+	padding: 8px;       
+	font-size: 12px;
+	border: 1px;
+	border-radius: 4px;
+	pointer-events: none;
+	color: #fff;
+	background-color: rgba(0,0,0,0.8);
 	visibility: hidden;
 	/*font-family: Georgia, Arial, Helvetica, sans-serif !important;*/
 }
 
 .row {
-	/*padding: 5px;*/
+	padding: 5px;
 	text-align: center;
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
-
-
-
-
-
-
-
-
+.avg {
+	stroke: rgba(0,0,255,1);
+	stroke-width: 1.1;
+	stroke-dasharray: 1,2;
+	fill: none;
+}

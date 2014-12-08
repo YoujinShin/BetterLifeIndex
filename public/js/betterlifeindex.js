@@ -182,7 +182,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("d", arc_housing)
 			.on('mouseover', function(d) {
 				// console.log(d.data.country);
-				tooltip.text(d.data.housing_expenditure);
+				tooltip.text(d.data.country+": "+d.data.housing_expenditure);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -210,7 +210,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_income)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.household_net_financial_wealth);
+				tooltip.text(d.data.country+": "+d.data.household_net_financial_wealth);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -235,7 +235,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_community)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.quality_of_support_network);
+				tooltip.text(d.data.country+": "+d.data.quality_of_support_network);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -260,7 +260,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_environment)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.air_pollution);
+				tooltip.text(d.data.country+": "+d.data.air_pollution);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -285,7 +285,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_civic)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.consultation_on_rule_making);
+				tooltip.text(d.data.country+": "+d.data.consultation_on_rule_making);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -310,7 +310,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_health)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.life_expectancy);
+				tooltip.text(d.data.country+": "+d.data.life_expectancy);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -336,7 +336,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_life)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.life_satisfaction);
+				tooltip.text(d.data.country+": "+d.data.life_satisfaction);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -361,7 +361,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_safety)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.assault_rate);
+				tooltip.text(d.data.country+": "+d.data.assault_rate);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -386,7 +386,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_balance)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.employees_working_very_long_hours);
+				tooltip.text(d.data.country+": "+d.data.employees_working_very_long_hours);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -411,7 +411,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_education)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.student_skills);
+				tooltip.text(d.data.country+": "+d.data.student_skills);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -436,7 +436,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_job)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.personal_earnings);
+				tooltip.text(d.data.country+": "+d.data.personal_earnings);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
 			})
@@ -453,6 +453,8 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 		.attr("r", avg_job_value)
 		.attr("class", "avg");
 
+	var selectedCountry;
+
 	var path_country = svg_country.selectAll(".solidArc")
 			.data(pie(data))
 		.enter().append("path")
@@ -461,23 +463,150 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_life)
 			.on('mouseover', function(d) {
+				selectCountry(d.data.country);
 				// console.log(d.data.country);
 				tooltip.text(d.data.country);
 				tooltip.style("visibility", "visible");
+
+				// selectedCountry = this;
 				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
 			})
 			.on("mouseout", function(){
+				// console.log(selectedCountry);
+				// d3.select(this).attr("fill", "#fff");
+				// d3.select(selectedCountry).attr("fill", "blue");
+
+				// svg_country.selectAll("path").
 				tooltip.style("visibility", "hidden");
 			});
 
 	// console.log( svg_job.selectAll("path") );
 });
 
-function selectCountry() {
+function selectCountry(d) {
+	svg_life.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
 
+	svg_civic.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_community.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_safety.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_health.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_housing.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_income.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_job.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_balance.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_education.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_environment.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#56d5fc");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+
+	svg_country.selectAll("path").each(function(e) {
+		if(d == e.data.country) {
+			d3.select(this).attr("fill", "blue");
+			d3.select(this).attr("stroke", "blue");
+		} else {
+			d3.select(this).attr("fill", "#fff");
+			d3.select(this).attr("stroke", "#56d5fc");
+		}
+	});
+	
 }
 
 d3.selection.prototype.moveToFront = function() {

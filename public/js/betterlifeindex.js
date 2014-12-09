@@ -182,8 +182,14 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("d", arc_housing)
 			.on('mouseover', function(d) {
 				// console.log(d.data.country);
-				tooltip.text(d.data.country+": "+d.data.housing_expenditure);
+				tooltip.text(d.data.country+", "+d.data.housing_expenditure+"%");
 				tooltip.style("visibility", "visible");
+
+
+				$( "#topic" ).html( 'Housing Expenditure, ' );
+				$( "#contents ").html("This indicator considers the expenditure of households in housing and maintenance of the house, as defined in the SNA (P31CP040: Housing, water, electricity, gas and other fuels; P31CP050: Furnishings, households’ equipment and routine maintenance of the house). It includes actual and imputed rentals for housing, expenditure in maintenance and repair of the dwelling (including miscellaneous services), in water supply, electricity, gas and other fuels, as well as the expenditure in furniture and furnishings and households equipment, and goods and services for routine maintenance of the house as a percentage of the household gross adjusted disposable income. Data refer to the sum of households and non-profit institution serving households."
+					+"<br> <br> - Percentage of the household gross adjusted disposable income"	
+				);
 				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){
@@ -210,8 +216,14 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_income)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.household_net_financial_wealth);
+				tooltip.text(d.data.country+", $"+d.data.household_net_financial_wealth);
 				tooltip.style("visibility", "visible");
+
+				$( "#topic" ).html( 'Household Net Financial Wealth, ' );
+				$( "#contents ").html(
+					"Net financial wealth consists of : currency and deposits, securities other than share, loans, shares and other equity (including shares issued by investment funds), insurance technical reserves, and other accounts receivable or payable, net of household financial liabilities, as defined by the System of National Accounts – SNA. Data refer to the sum of households and non-profit institution serving households."
+					+"<br> <br> - Unit of measure used: US dollars at current PPPs per capita"
+				);
 				// d3.select(this).moveToFront();
 			})
 			.on("mousemove", function(){

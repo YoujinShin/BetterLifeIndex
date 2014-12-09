@@ -188,7 +188,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 
 				$( "#topic" ).html( 'Housing Expenditure, ' );
 				$( "#contents ").html("This indicator considers the expenditure of households in housing and maintenance of the house, as defined in the SNA (P31CP040: Housing, water, electricity, gas and other fuels; P31CP050: Furnishings, households’ equipment and routine maintenance of the house). It includes actual and imputed rentals for housing, expenditure in maintenance and repair of the dwelling (including miscellaneous services), in water supply, electricity, gas and other fuels, as well as the expenditure in furniture and furnishings and households equipment, and goods and services for routine maintenance of the house as a percentage of the household gross adjusted disposable income. Data refer to the sum of households and non-profit institution serving households."
-					+"<br> <br> - Percentage of the household gross adjusted disposable income"	
+					+"<br> - Percentage of the household gross adjusted disposable income"	
 				);
 				// d3.select(this).moveToFront();
 			})
@@ -222,7 +222,7 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 				$( "#topic" ).html( 'Household Net Financial Wealth, ' );
 				$( "#contents ").html(
 					"Net financial wealth consists of : currency and deposits, securities other than share, loans, shares and other equity (including shares issued by investment funds), insurance technical reserves, and other accounts receivable or payable, net of household financial liabilities, as defined by the System of National Accounts – SNA. Data refer to the sum of households and non-profit institution serving households."
-					+"<br> <br> - Unit of measure used: US dollars at current PPPs per capita"
+					+"<br> - Unit of measure used: US dollars at current PPPs per capita"
 				);
 				// d3.select(this).moveToFront();
 			})
@@ -247,9 +247,14 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_community)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.quality_of_support_network);
+				tooltip.text(d.data.country+", "+d.data.quality_of_support_network+"%");
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+				$( "#topic" ).html( 'Quality of support network, ' );
+				$( "#contents ").html(
+					"It's a measure of perceived social network support. The indicator is based on the question: “If you were in trouble, do you have relatives or friends you can count on to help you whenever you need them, or not?” and it considers the respondents who respond positively."
+					+"<br> - Unit of measure used: Percentage of people"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -272,9 +277,15 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_environment)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.air_pollution);
+				tooltip.text(d.data.country+", "+d.data.air_pollution);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Air pollution, ' );
+				$( "#contents ").html(
+					"The indicator is urban-population weighted average of annual concentrations of particulate matters less than 10 microns in diameter (PM10) in the air in residential areas of cities with more than 100,000 residents."
+					+"<br> - Unit of measure used: Micrograms per cubic meter"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -297,9 +308,15 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_civic)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.consultation_on_rule_making);
+				tooltip.text(d.data.country+", "+d.data.consultation_on_rule_making);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+
+				$( "#topic" ).html( 'Consultation on rule-making, ' );
+				$( "#contents ").html(
+					"The indicator is a weighted average of yes/no answers to various questions on the existence of law consultation by citizens, of formal procedures enabling general public to impact regulation and governmental actions. The indicator describes the extent to which formal consultation processes are built in at key stages of the design of regulatory proposals, and what mechanisms exist for the outcome of that consultation to influence the preparation of draft primary laws and subordinate regulations. This indicator has been computed based on responses to the OECD’s survey of regulatory management systems, where respondents were government officials in OECD countries. The indicator is based on questions about the existence of formal procedures enabling general public, business and civil society organisations to impact regulation and governmental actions, and on whether citizens’ views on such consultation procedures are made public."
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -322,9 +339,16 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_health)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.life_expectancy);
+				tooltip.text(d.data.country+", "+d.data.life_expectancy);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Life expectancy, ' );
+				$( "#contents ").html(
+					"Life expectancy measures how long on average people could expect to live based on the age-specific death rates currently prevailing. This measure refers to people born today and is computed as a weighted average of life expectancy for men and women."
+					+"<br> - Unit of measure used: Years old"
+				);
+
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -348,9 +372,15 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_life)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.life_satisfaction);
+				tooltip.text(d.data.country+", "+d.data.life_satisfaction);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Life Satisfaction, ' );
+				$( "#contents ").html(
+					"The indicator considers people's evaluation of their life as a whole. It is a weighted-sum of different response categories based on people's rates of their current life relative to the best and worst possible lives for them on a scale from 0 to 10, using the Cantril Ladder (known also as the Self-Anchoring Striving Scale)."
+					+"<br> - Unit of measure used: Mean value (Cantril Ladder)"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -373,9 +403,15 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_safety)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.assault_rate);
+				tooltip.text(d.data.country+", "+d.data.assault_rate+"%");
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Assault rate, ' );
+				$( "#contents ").html(
+					"The indicator is based on the question: 'Within the past 12 months: have you been assaulted or mugged?' and it considers people declaring having been assaulted or mugged."
+					+"<br>  - Unit of measure used: Percentage of people aged 15 and over"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -398,9 +434,15 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_balance)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.employees_working_very_long_hours);
+				tooltip.text(d.data.country+", "+d.data.employees_working_very_long_hours+"%");
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Employees working very long hours, ' );
+				$( "#contents ").html(
+					"This indicator measures the proportion of dependent employed whose usual hours of work per week are 50 hours or more."
+					+"<br>  - Unit of measure used: Percentage of the dependent employed"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -426,6 +468,12 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 				tooltip.text(d.data.country+": "+d.data.student_skills);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Student skills, ' );
+				$( "#contents ").html(
+					"Students’ average score in reading, mathematics and science as assessed by the OECD’s Programme for International Student Assessment (PISA)"
+					+"<br>  - Unit of measure used: Average PISA scores"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -448,9 +496,15 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 			.attr("stroke", "#56d5fc")
 			.attr("d", arc_job)
 			.on('mouseover', function(d) {
-				tooltip.text(d.data.country+": "+d.data.personal_earnings);
+				tooltip.text(d.data.country+", $"+d.data.personal_earnings);
 				tooltip.style("visibility", "visible");
 				// d3.select(this).moveToFront();
+
+				$( "#topic" ).html( 'Personal earnings, ' );
+				$( "#contents ").html(
+					"This indicator refers to the average annual wages per full-time equivalent dependent employee, which are obtained by dividing the national-accounts-based total wage bill by the average number of employees in the total economy, which is then multiplied by the ratio of average usual weekly hours per full-time employee to average usually weekly hours for all employees. It considers the employees’ gross remuneration, that is, the total before any deductions are made by the employer in respect of taxes, contributions of employees to social security and pension schemes, life insurance premiums, union dues and other obligations of employees."
+					+"<br>  - Unit of measure used: US dollars at 2012 prices"
+				);
 			})
 			.on("mousemove", function(){
 				tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+12)+"px");
@@ -479,6 +533,11 @@ d3.csv('OECD_BetterLifeIndex_Clean.csv', function(error, data) {
 				// console.log(d.data.country);
 				tooltip.text(d.data.country);
 				tooltip.style("visibility", "visible");
+
+				$( "#topic" ).html( 'The Better Life Index ' );
+				$( "#contents ").html(
+					"allows you to compare well-being across countries, based on 11 topics the OECD has identified as essential, in the areas of material living conditions and quality of life. The Index aims to involve citizens in this debate, and to empower them to become more informed and engaged in the policy-making process that shapes all our lives. For this visualization, one index has been selected in each topic."	
+				);
 
 				// selectedCountry = this;
 				// d3.select(this).moveToFront();
